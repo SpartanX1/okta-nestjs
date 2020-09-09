@@ -20,7 +20,7 @@ export class OktaGuard implements CanActivate, OnModuleInit {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const token = context.getArgs()[0].headers.authorization.split(' ')[1];
+    const token = context.getArgs()[0]?.headers?.authorization.split(' ')[1];
     return this.oktaJwtVerifier.verifyAccessToken(token, 'your_audience')
       .then(() => {
         return true;
